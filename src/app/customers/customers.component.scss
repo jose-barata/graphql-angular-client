@@ -1,0 +1,10 @@
+.customers-wrapper {
+  display: flex;
+  flex-direction: row;
+
+  .customers-table,
+  .customers-card {
+    width: 50%;
+    margin: 50px;
+  }
+}

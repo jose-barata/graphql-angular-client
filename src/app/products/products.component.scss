@@ -1,0 +1,10 @@
+.products-wrapper {
+  display: flex;
+  flex-direction: row;
+
+  .products-table,
+  .products-card {
+    width: 50%;
+    margin: 50px;
+  }
+}
