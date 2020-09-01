@@ -1,6 +1,6 @@
 ## Description
 
-GraphQL angular client to use with [GraphQL + NestJS Server](https://github.com/jose-barata/graphql-nestjs-server).<br>
+GraphQL + Angular + Apollo demo client to use with [GraphQL + NestJS Server](https://github.com/jose-barata/graphql-nestjs-server).<br>
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.8.<br>
 Apollo Angular setup was done using `ng add apollo-angular`.<br>
 Angular Material setup was done using `ng add @angular/material`.
