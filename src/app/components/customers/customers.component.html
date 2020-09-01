@@ -17,6 +17,12 @@
       <th mat-header-cell *matHeaderCellDef>Tax Id</th>
       <td mat-cell *matCellDef="let element">{{ element.taxId }}</td>
     </ng-container>
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon (click)="onDeleteCustomer(element)">delete_outline</mat-icon>
+      </td>
+    </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="customersTableColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: customersTableColumns"></tr>
@@ -42,7 +48,7 @@
         mat-raised-button
         color="primary"
         [disabled]="customersForm.invalid"
-        (click)="addCustomer()"
+        (click)="onAddCustomer()"
       >
         Add
       </button>
