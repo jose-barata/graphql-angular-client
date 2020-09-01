@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core';
 import { APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
+import { CreateCustomerMutation } from './mutations/create-customer.mutation';
+import { CreateProductMutation } from './mutations/create-product.mutation';
+import { AllDataQuery } from './queries/all-data.query';
 
 const uri: string = 'http://localhost:3000/graphql'; // GraphQL server running here
 
@@ -19,6 +22,9 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
       useFactory: createApollo,
       deps: [HttpLink],
     },
+    AllDataQuery,
+    CreateCustomerMutation,
+    CreateProductMutation,
   ],
 })
 export class GraphQLModule {}

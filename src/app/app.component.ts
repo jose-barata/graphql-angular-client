@@ -1,15 +1,14 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ApolloQueryResult } from '@apollo/client/core';
-import { Apollo } from 'apollo-angular';
 import { Subscription } from 'rxjs';
-import { QUERY_CUSTOMERS_AND_PRODUCTS } from './queries';
-import { Customer, Product, Query } from './types';
+import { AllDataQuery, AllDataQueryResponse } from './graphql/queries/all-data.query';
+import { Customer, Product } from './graphql/types';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
   products: Product[];
@@ -18,21 +17,22 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private querySubcription: Subscription;
 
-  constructor(private apollo: Apollo) {}
+  constructor(private allDataQuery: AllDataQuery) {}
 
   ngOnInit() {
-    this.querySubcription = this.apollo
-      .watchQuery({
-        query: QUERY_CUSTOMERS_AND_PRODUCTS,
+    this.querySubcription = this.allDataQuery
+      .watch({
         errorPolicy: 'all',
-        fetchPolicy: 'no-cache',
+        fetchPolicy: 'no-cache'
       })
       .valueChanges.subscribe(
-        (result: ApolloQueryResult<Query>) => {
+        (result: ApolloQueryResult<AllDataQueryResponse>) => {
           this.products = result.data && result.data.products;
           this.customers = result.data && result.data.customers;
           this.loading = result.loading;
-          console.log('Graphql errors', result.errors);
+          if (result.errors) {
+            console.log('Graphql errors', result.errors);
+          }
         },
         (error: HttpErrorResponse) => {
           console.log('there was an error sending the query', error.message);
